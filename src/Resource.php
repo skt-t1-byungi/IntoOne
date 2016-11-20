@@ -95,7 +95,7 @@ class Resource
 
     public function fseek($offset, $whence = SEEK_SET)
     {
-        fseek($this->resource, $whence);
+        fseek($this->resource, $offset, $whence);
     }
 
     public function partial($offset, $length = null)

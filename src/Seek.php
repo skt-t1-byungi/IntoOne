@@ -21,7 +21,7 @@ class Seek
     {
         $bin = $this->resource->partial(-4); //4byte == 32bit
 
-        $length = unpack('V', $bin);
+        $length = unpack('V', $bin)[1];
 
         $offset = $this->resource->size() - ($length + 4);
 

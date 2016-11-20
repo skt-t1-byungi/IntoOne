@@ -31,7 +31,7 @@ class IntoOne
         return $seek->read($name);
     }
 
-    public static function raadChunks($path, $name, callable $callable)
+    public static function readChunks($path, $name, callable $callable)
     {
         $resource = Resource::fopen($path, 'r');
 

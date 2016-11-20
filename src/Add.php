@@ -48,7 +48,7 @@ class Add
 
         $concat->start($name);
 
-        $file->chunks(function ($chunk) use ($cocat) {
+        $file->chunks(function ($chunk) use ($concat) {
             $concat->write($chunk);
         });
 
