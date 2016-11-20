@@ -1,16 +1,24 @@
 <?php
+use SktT1Byungi\IntoOne;
+
 $path = "test.bin";
 
+var_dump(is_file($path)); //false;
+
 IntoOne::concat($path, function ($add) {
-    $add->data('1', 'abcd');
-    $add->path('2', 'files/test.txt');
-    $add->resource('3', fopen('php://stdin', 'r'));
+    $add->data('key1', 'abcd');
+    $add->path('key2', 'files/test.txt');
+    $add->resource('key3', fopen('php://stdin', 'r'));
 });
 
-$data = IntoOne::read($path, '1'); // $data == 'abcd'
+var_dump(is_file($path)); //true;
 
+$data = IntoOne::read($path, 'key1'); // $data == 'abcd'
+
+//for large file
 $content = '';
-IntoOne::readChunks($path, 2, function ($chunk) use ($content) {
+IntoOne::readChunks($path, "key2", function ($chunk) use ($content) {
     $content .= $chunk;
 });
-//$content == file_get_contents(files/test.txt)
+
+//$content == file_get_contents("files/test.txt")
