@@ -37,5 +37,9 @@ IntoOne::readChunks($path, "key2", function ($chunk) use ($content) {
 
 ```
 
+License
+---
+MIT
+
 
 
