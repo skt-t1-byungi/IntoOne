@@ -2,6 +2,10 @@ SktT1Byungi/IntoOne
 ==============================
 merge files into one
 
+[![Latest Stable Version](https://poser.pugx.org/skt-t1-byungi/into-one/v/stable)](https://packagist.org/packages/skt-t1-byungi/into-one)
+[![Total Downloads](https://poser.pugx.org/skt-t1-byungi/into-one/downloads)](https://packagist.org/packages/skt-t1-byungi/into-one)
+[![License](https://poser.pugx.org/skt-t1-byungi/into-one/license)](https://packagist.org/packages/skt-t1-byungi/into-one)
+
 Description
 ---
 여러 파일을 merge해서 관리하기 위한 용도.
