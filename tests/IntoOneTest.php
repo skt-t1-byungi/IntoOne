@@ -106,4 +106,41 @@ class IntoOneTest extends PHPUnit_Framework_TestCase
             ->url();
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testInvalidKey()
+    {
+        IntoOne::concat($this->fpath, function ($add) {
+            $add->data('key1', 'aaa');
+            $add->data('key2', 'bbb');
+            $add->data('key3', 'ccc');
+        });
+
+        IntoOne::read($this->fpath, 'key4');
+    }
+
+    public function wrongFileContents()
+    {
+        return [
+            [''],
+            ['sadfasdfasdfr2342342342'],
+            [111111111111111111111111],
+        ];
+    }
+
+    /**
+     * @dataProvider wrongFileContents
+     * @expectedException \DomainException
+     */
+    public function testInvalidFile($content)
+    {
+        $path = tempnam(sys_get_temp_dir(), 'tmp');
+        $fp = fopen($path, 'a');
+        fwrite($fp, $content);
+        fclose($fp);
+
+        IntoOne::read($path, 'key1');
+    }
+
 }

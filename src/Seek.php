@@ -2,6 +2,8 @@
 
 namespace SktT1Byungi\IntoOne;
 
+use DomainException;
+use InvalidArgumentException;
 use SktT1Byungi\IntoOne\Resource;
 
 class Seek
@@ -12,9 +14,17 @@ class Seek
 
     public function __construct(Resource $resource)
     {
+        if ($resource->size() === 0) {
+            throw new DomainException("empty file!");
+        }
+
         $this->resource = $resource;
 
         $this->files = $this->unserialize();
+
+        if (!is_array($this->files)) {
+            throw new DomainException("invalid file!");
+        }
     }
 
     protected function unserialize()
@@ -44,6 +54,10 @@ class Seek
 
     protected function getFile($name)
     {
-        return $this->files[$name];
+        if (array_key_exists($name, $this->files)) {
+            return $this->files[$name];
+        }
+
+        throw new InvalidArgumentException("not exist index : {$name}");
     }
 }
