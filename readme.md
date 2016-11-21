@@ -14,7 +14,7 @@ Usage
 ---
 
 ```php
-use SktT1Byungi\IntoOne;
+namespace SktT1Byungi\IntoOne;
 
 $path = "test.bin";
 
@@ -37,8 +37,24 @@ IntoOne::readChunks($path, "key2", function ($chunk) use ($content) {
 });
 
 //$content == file_get_contents("files/test.txt")
+```
 
+without facade
+---
+```php
+namespace SktT1Byungi\IntoOne;
 
+$path = "test.bin";
+
+$resource = Resource::fopen($path, 'w');
+$concat = new Concat($resource);
+$add = new Add($concat);
+
+$add->data('key1', 'abcd');
+$add->path('key2', 'files/test.txt');
+$add->resource('key3', fopen('php://stdin', 'r'));
+
+$concat->finish();
 ```
 
 License
