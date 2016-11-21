@@ -123,6 +123,7 @@ class Resource
 
         $readable = $length;
 
+        $whence = $offset >= 0 ? SEEK_SET : SEEK_END;
         $this->fseek($offset);
 
         while (!feof($this->resource) && $readable > 0) {
