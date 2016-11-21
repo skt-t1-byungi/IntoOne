@@ -106,7 +106,8 @@ class Resource
             $length = $this->size();
         }
 
-        $this->fseek($offset);
+        $whence = $offset >= 0 ? SEEK_SET : SEEK_END;
+        $this->fseek($offset, $whence);
 
         return fread($this->resource, $length);
     }
