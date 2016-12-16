@@ -46,12 +46,12 @@ class Resource
 
     public function isWritable()
     {
-        return preg_match('/[+|w|a|x|c]/', $this->mode) > 0;
+        return preg_match('/[+waxc]/', $this->mode) > 0;
     }
 
     public function isReadable()
     {
-        return preg_match('/[+|r]/', $this->mode) > 0;
+        return preg_match('/[+r]/', $this->mode) > 0;
     }
 
     public function checkWritable()
